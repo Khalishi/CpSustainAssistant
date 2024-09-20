@@ -8,16 +8,24 @@ use Livewire\Volt\Component;
 
 new class extends Component
 {
-    public string $name = '';
+    public string $comapany_name = '';
     public string $email = '';
+    public string $province = '';
+    public string $City = '';
+    public string $year_Of_incorporation = '';
+    public string $number_of_employees = '';
 
     /**
      * Mount the component.
      */
     public function mount(): void
     {
-        $this->name = Auth::user()->name;
+        $this->comapany_name = Auth::user()->comapany_name;
         $this->email = Auth::user()->email;
+        $this->province = Auth::user()->province;
+        $this->City = Auth::user()->City;
+        $this->year_Of_incorporation = Auth::user()->year_Of_incorporation;
+        $this->number_of_employees = Auth::user()->number_of_employees;
     }
 
     /**
@@ -28,8 +36,12 @@ new class extends Component
         $user = Auth::user();
 
         $validated = $this->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'comapany_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($user->id)],
+            'province' => ['required', 'string', 'max:255'],
+            'City' => ['required', 'string', 'max:255'],
+            'year_Of_incorporation' => ['required', 'string', 'max:255'],
+            'number_of_employees' => ['required', 'string', 'max:255'],
         ]);
 
         $user->fill($validated);
@@ -40,7 +52,7 @@ new class extends Component
 
         $user->save();
 
-        $this->dispatch('profile-updated', name: $user->name);
+        $this->dispatch('profile-updated', comapany_name: $user->comapany_name);
     }
 
     /**
@@ -75,9 +87,9 @@ new class extends Component
 
     <form wire:submit="updateProfileInformation" class="mt-6 space-y-6">
         <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input wire:model="name" id="name" name="name" type="text" class="mt-1 block w-full" required autofocus autocomplete="name" />
-            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+            <x-input-label for="comapany_name" :value="__('Comapany Name')" />
+            <x-text-input wire:model="comapany_name" id="comapany_name" name="comapany_name" type="text" class="mt-1 block w-full" required autofocus autocomplete="comapany_name" />
+            <x-input-error class="mt-2" :messages="$errors->get('comapany_name')" />
         </div>
 
         <div>
@@ -102,6 +114,33 @@ new class extends Component
                     @endif
                 </div>
             @endif
+        </div>
+
+        <!-- province -->
+        <div>
+            <x-input-label for="province" :value="__('Province')" />
+            <x-text-input wire:model="province" id="province" class="block mt-1 w-full" type="text" name="province" required autofocus autocomplete="province" />
+            <x-input-error :messages="$errors->get('province')" class="mt-2" />
+        </div>
+        <!-- City -->
+        <div>
+            <x-input-label for="City" :value="__('City')" />
+            <x-text-input wire:model="City" id="City" class="block mt-1 w-full" type="text" name="City" required autofocus autocomplete="City" />
+            <x-input-error :messages="$errors->get('City')" class="mt-2" />
+        </div>
+
+        <!-- year_Of_incorporation -->
+        <div>
+            <x-input-label for="year_Of_incorporation" :value="__('Year Of Incorporation')" />
+            <x-text-input wire:model="year_Of_incorporation" id="year_Of_incorporation" class="block mt-1 w-full" type="text" name="year_Of_incorporation" required autofocus autocomplete="year_Of_incorporation" />
+            <x-input-error :messages="$errors->get('year_Of_incorporation')" class="mt-2" />
+        </div>
+        
+        <!-- number_of_employees -->
+        <div>
+            <x-input-label for="number_of_employees" :value="__('Number Of Employees')" />
+            <x-text-input wire:model="number_of_employees" id="year_Of_incorporation" class="block mt-1 w-full" type="text" name="number_of_employees" required autofocus autocomplete="number_of_employees" />
+            <x-input-error :messages="$errors->get('number_of_employees')" class="mt-2" />
         </div>
 
         <div class="flex items-center gap-4">
