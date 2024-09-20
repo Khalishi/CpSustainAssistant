@@ -83,7 +83,7 @@ new #[Layout('layouts.guest')] class extends Component
         <!-- number_of_employees -->
         <div class="mt-4">
             <x-input-label for="number_of_employees" :value="__('Number Of Employees')" />
-            <x-text-input wire:model="number_of_employees" id="year_Of_incorporation" class="block mt-1 w-full" type="text" name="number_of_employees" required autofocus autocomplete="number_of_employees" />
+            <x-text-input wire:model="number_of_employees" id="number_of_employees" class="block mt-1 w-full" type="text" name="number_of_employees" required autofocus autocomplete="number_of_employees" />
             <x-input-error :messages="$errors->get('number_of_employees')" class="mt-2" />
         </div>
 
