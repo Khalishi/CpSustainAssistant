@@ -33,7 +33,40 @@ new class extends Component
             <a href="#" class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 dark:text-gray-100 hover:border-gray-300 dark:hover:border-green-400 hover:text-gray-700 dark:hover:text-gray-300">Products</a>
           </div>
         </div>
-        <div class="hidden sm:ml-6 sm:flex sm:items-center">
+        <div class="hidden sm:ml-6 sm:flex space-x-4 sm:items-center">
+             <!-- Add this button right here -->
+             <div class=" ml-2">
+                        <button type="button" x-bind:class="darkMode ? 'bg-green-500' : 'bg-gray-200'"
+                            x-on:click="darkMode = !darkMode"
+                            class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-green-500 focus:ring-offset-2"
+                            role="switch" aria-checked="false">
+                            <span class="sr-only">Dark mode toggle</span>
+                            <span x-bind:class="darkMode ? 'translate-x-5 bg-gray-700' : 'translate-x-0 bg-white'"
+                                class="pointer-events-none relative inline-block h-5 w-5 transform rounded-full shadow ring-0 transition duration-200 ease-in-out">
+                                <span
+                                    x-bind:class="darkMode ? 'opacity-0 ease-out duration-100' : 'opacity-100 ease-in duration-200'"
+                                    class="absolute inset-0 flex h-full w-full items-center justify-center transition-opacity"
+                                    aria-hidden="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-gray-400"
+                                        viewBox="0 0 20 20" fill="currentColor">
+                                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+                                    </svg>
+                                </span>
+                                <span
+                                    x-bind:class="darkMode ?  'opacity-100 ease-in duration-200' : 'opacity-0 ease-out duration-100'"
+                                    class="absolute inset-0 flex h-full w-full items-center justify-center transition-opacity"
+                                    aria-hidden="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white"
+                                        viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd"
+                                            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </span>
+                            </span>
+                        </button>
+                    </div>
+
     <!-- Profile dropdown -->
     <div class="relative ml-3" x-data="{ open: false }" @click.away="open = false">
     <!-- Button to trigger the dropdown -->
@@ -41,7 +74,7 @@ new class extends Component
         <button @click="open = !open" type="button" class="relative flex rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-green-500 focus:ring-offset-2" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
         <span class="absolute -inset-1.5"></span>
         <span class="sr-only">Open user menu</span>
-        <span class="inline-flex items-center justify-center h-8 w-8 rounded-full bg-blue-500 dark:bg-gray-500">
+        <span class="inline-flex items-center justify-center h-8 w-8 rounded-full bg-blue-500 dark:bg-gray-700">
             <span class="text-sm font-medium leading-none text-white dark:text-gray-100">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
                <path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z" clip-rule="evenodd" />
