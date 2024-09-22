@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\ShowProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/register');
+Route::get('/company/profile', [ShowProfileController::class, 'show'])->name('profile.show');
+
 
 // Route::view('/', 'welcome');
 
