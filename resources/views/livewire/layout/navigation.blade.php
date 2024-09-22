@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use App\Livewire\Actions\Logout;
 use Livewire\Volt\Component;
 
@@ -14,6 +15,7 @@ new class extends Component
 
         $this->redirect('/login', navigate: true);
     }
+
 }; ?>
 
 <!-- nav start -->
@@ -27,8 +29,15 @@ new class extends Component
             <img class="hidden h-8 w-auto lg:block" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
           </div>
           <div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
-            <a href="#" class="inline-flex items-center border-b-2 border-indigo-500 dark:border-green-500 px-1 pt-1 text-sm font-medium text-gray-900 dark:text-gray-100" aria-current="page">Dashboard</a>
-            <a href="#" class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 dark:text-gray-100 hover:border-gray-300 dark:hover:border-green-400 hover:text-gray-700 dark:hover:text-gray-300">Profile</a>
+          <a href="{{ route('dashboard') }}" 
+            class="inline-flex items-center border-b-2 {{ request()->routeIs('dashboard') ? 'border-indigo-500 dark:border-green-500' : 'border-transparent' }} px-1 pt-1 text-sm font-medium text-gray-900 dark:text-gray-100 hover:border-gray-300 dark:hover:border-green-400 hover:text-gray-700 dark:hover:text-gray-300" 
+            aria-current="page">
+              Dashboard
+          </a>
+          <a href="{{ route('profile.show') }}" 
+            class="inline-flex items-center border-b-2 {{ request()->routeIs('profile.show') ? 'border-indigo-500 dark:border-green-500' : 'border-transparent' }} px-1 pt-1 text-sm font-medium text-gray-500 dark:text-gray-100 hover:border-gray-300 dark:hover:border-green-400 hover:text-gray-700 dark:hover:text-gray-300">
+              Profile
+          </a>
             <a href="#" class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 dark:text-gray-100 hover:border-gray-300 dark:hover:border-green-400 hover:text-gray-700 dark:hover:text-gray-300">Survey</a>
             <a href="#" class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 dark:text-gray-100 hover:border-gray-300 dark:hover:border-green-400 hover:text-gray-700 dark:hover:text-gray-300">Products</a>
           </div>
@@ -157,8 +166,16 @@ new class extends Component
     <!-- Mobile menu -->
     <div x-show="open" class="sm:hidden" id="mobile-menu">
       <div class="space-y-1 pb-3 pt-2">
-        <a href="#" class="block border-l-4 border-indigo-500 dark:border-gray-700 bg-indigo-50 dark:bg-gray-900 py-2 pl-3 pr-4 text-base font-medium text-indigo-700 dark:text-gray-100" aria-current="page">Dashboard</a>
-        <a href="#" class="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-600 dark:text-gray-100 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800">Profile</a>
+      <a href="{{ route('dashboard') }}" 
+          class="block border-l-4 {{ request()->routeIs('dashboard') ? 'border-indigo-500 dark:border-green-500 bg-indigo-50 dark:bg-gray-900 text-indigo-700' : 'border-transparent text-gray-600' }} py-2 pl-3 pr-4 text-base font-medium dark:text-gray-100" 
+          aria-current="page">
+            Dashboard
+        </a>
+
+        <a href="{{ route('profile.show') }}" 
+          class="block border-l-4 {{ request()->routeIs('profile.show') ? 'border-indigo-500 dark:border-green-500 bg-indigo-50 dark:bg-gray-900 text-indigo-700' : 'border-transparent text-gray-600' }} py-2 pl-3 pr-4 text-base font-medium dark:text-gray-100 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800">
+            Profile
+        </a>
         <a href="#" class="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-600 dark:text-gray-100 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800">Survey</a>
         <a href="#" class="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-600 dark:text-gray-100 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800">Products</a>
       </div>
